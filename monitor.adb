@@ -30,7 +30,7 @@ package body Monitor is
          end select;
 
          --  every 5 seconds print the state of the center
-         if Common.Now >= Next_Print then
+         if not Ended and Common.Now >= Next_Print then
             Warehouse.Storage.Get_Stock (S);
             Total := S (Common.A) + S (Common.B) + S (Common.C);
 

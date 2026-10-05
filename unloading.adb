@@ -61,7 +61,7 @@ package body Unloading is
       subtype Arrival_Range is Integer range 1 .. 10;
 
       -- min and max quantity of one car
-      subtype Quantity_Range is Integer range 1 .. 10;
+      subtype Quantity_Range is Integer range 5 .. 10;
 
       -- random seconds
       package Random_Arrival is new
@@ -86,7 +86,7 @@ package body Unloading is
 
       D : Common.Delivery;
 
-      Max_Wait : constant Duration := 3.0;
+      Max_Wait : constant Duration := 5.0;
 
    begin
       -- random numbers resets
