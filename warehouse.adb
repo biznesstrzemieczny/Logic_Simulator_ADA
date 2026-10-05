@@ -74,18 +74,13 @@ package body Warehouse is
    end Storage;
 
    task body Customer_Type is
-
-   begin
-      null;
-   end Customer_Type;
-
-   task body Customer_Type is
       --Generator for order parameters
       Gen_Goods : Random_Goods.Generator;
       Gen_Qty : Random_Qty.Generator;
 
       My_Order : Common.Order;
       Done : Boolean := False;
+      First_Try : Boolean := True;
 
    begin
 
@@ -103,7 +98,6 @@ package body Warehouse is
                            Integer'Image (My_Order.Quantity) & " units of product " &
                            Common.Goods_Type'Image (My_Order.Goods));
 
-      First_Try : Boolean := True;
 
       --loop not ending until the customer receives his order
       while not Done loop
