@@ -27,4 +27,6 @@ package Common is
 
    type Stock is array (Goods_Type) of Integer;
 
+   function Now return Integer;
+
 end Common;
