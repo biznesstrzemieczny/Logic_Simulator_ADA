@@ -73,7 +73,7 @@ package body Robots is
             null;
          end select;
       end loop;
-      
+
       Ada.Text_IO.Put_Line
         ("["
          & Integer'Image (Common.Now)
