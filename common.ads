@@ -4,7 +4,7 @@ package Common is
    Robot_Count        : constant := 2;
    Warehouse_Capacity : constant := 50;
 
-   type Goods_Type is (Laptop, Phone, Monitor);
+   type Goods_Type is (Laptop, Phone, Screen);
 
    type Delivery is record
       Id       : Integer;
