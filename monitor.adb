@@ -30,9 +30,9 @@ package body Monitor is
          end select;
 
          --  every 5 seconds print the state of the center
-         if Common.Now >= Next_Print then
+         if not Ended and Common.Now >= Next_Print then
             Warehouse.Storage.Get_Stock (S);
-            Total := S (Common.A) + S (Common.B) + S (Common.C);
+            Total := S (Common.Monitor) + S (Common.Phone) + S (Common.Laptop);
 
             Ada.Text_IO.Put_Line ("--------- CENTER ---------");
             -- warehouse status
