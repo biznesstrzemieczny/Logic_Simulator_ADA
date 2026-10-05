@@ -19,7 +19,7 @@ package body Warehouse is
 
          select
             --making sure that warehouse is not full
-            when Total_Items < Common.Warehouse_Capacity - 10 =>
+            when Total_Items <= Common.Warehouse_Capacity - 10 =>
 
                accept Claim_Robot (D : Common.Delivery) do
 
@@ -93,7 +93,7 @@ package body Warehouse is
       My_Order.Goods := Random_Goods.Random(Gen_Goods);
       My_Order.Quantity := Random_Qty.Random(Gen_Qty);
 
-      Ada.Text_IO.Put_Line ("[" & Integer'Image (Common.Now) & "] [CUSTOMER" & Integer'Image (Id) &
+      Ada.Text_IO.Put_Line ("[" & Integer'Image (Common.Now) & "] [CUSTOMER" & Integer'Image (My_Order.Number) &
                            "] Placed order nr:" & Integer'Image (My_Order.Number) & " for " &
                            Integer'Image (My_Order.Quantity) & " units of product " &
                            Common.Goods_Type'Image (My_Order.Goods));
