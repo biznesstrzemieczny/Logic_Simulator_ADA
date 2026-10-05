@@ -15,19 +15,31 @@ package body Unloading is
    -- body of the Station task
    task body Station is
       Current : Common.Delivery;
+      Has_Delivery : Boolean := False;
    begin
 
       -- station is always ready for the new car during the loop and if the cars are gone the station task is over
       loop
          select
-            accept Unload (D : Common.Delivery) do
-            Current := D;
-            Log ("Station: unloading car" & Integer'Image (Current.Id) & " started");
-            -- integer delay duration that is linear to quantity
-            delay Duration (1 + Current.Quantity / 3);
-            Log ("Station: unloading car" & Integer'Image (Current.Id) & " finished");
+         -- when station is empty -> start unloading the car
+            when not Has_Delivery =>
+               accept Unload (D : Common.Delivery) do
+                  Current := D;
+                  Log ("Station: unloading car" & Integer'Image (Current.Id) & " started");
+                  -- integer delay duration that is linear to quantity
+                  delay Duration (1 + Current.Quantity / 3);
+                  Log ("Station: unloading car" & Integer'Image (Current.Id) & " finished");
             end Unload;
+            Has_Delivery := True;
          or 
+         -- when station is full -> give delivery to a robot
+            when Has_Delivery =>
+               accept Give_Delivery (D : out Common.Delivery) do
+                  D := Current;
+               end Give_Delivery;
+               Has_Delivery := False;
+               Log ("Station: delivery" & Integer'Image (Current.Id) & " handed to a robot");
+         or
             accept Finish;
             exit;
          end select;
