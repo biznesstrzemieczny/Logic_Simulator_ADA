@@ -1,0 +1,22 @@
+# GNAT build artifacts
+*.o
+*.ali
+b~*.ads
+b~*.adb
+
+# Executables (Windows .exe, macOS/Linux no extension)
+*.exe
+/main
+
+# gprbuild / Alire
+obj/
+bin/
+alire/
+config/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
