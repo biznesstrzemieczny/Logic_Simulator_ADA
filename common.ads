@@ -27,4 +27,7 @@ package Common is
 
    type Stock is array (Goods_Type) of Integer;
 
+   --  Seconds since the simulation started (used in every log line)
+   function Now return Integer;
+
 end Common;

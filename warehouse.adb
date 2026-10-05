@@ -19,7 +19,7 @@ package body Warehouse is
 
          select
             --making sure that warehouse is not full
-            when Total_Items < Common.Warehouse_Capacity =>
+            when Total_Items < Common.Warehouse_Capacity - 10 =>
 
                accept Claim_Robot (D : Common.Delivery) do
 
