@@ -10,19 +10,21 @@ package Common is
 
    --  Delivery brought by a car (module 1)
    type Delivery is record
-      Id       : Positive;
+      Id       : Integer;
       Goods    : Goods_Type;
-      Quantity : Positive;
+      Quantity : Integer;
    end record;
 
    --  Customer order (module A)
    type Order is record
-      Number   : Positive;
+      Number   : Integer;
       Goods    : Goods_Type;
-      Quantity : Positive;
+      Quantity : Integer;
    end record;
 
    --  Robot state shown by the monitor (module G)
    type Robot_State is (Free, Busy);
+
+   type Stock is array (Goods_Type) of Integer;
 
 end Common;
