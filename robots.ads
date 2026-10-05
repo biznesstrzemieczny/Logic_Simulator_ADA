@@ -1,5 +1,3 @@
-with Common;
-
 package Robots is
 
    --  Transport robot (module 2)

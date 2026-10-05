@@ -4,6 +4,7 @@ with Ada.Numerics.Discrete_Random;
 with Common;
 with Unloading;
 with Warehouse;
+with Monitor;
 
 package body Robots is
 
@@ -31,6 +32,7 @@ package body Robots is
                & Integer'Image (Current_Delivery.Quantity)
                & " units of goods "
                & Common.Goods_Type'Image (Current_Delivery.Goods));
+            Monitor.Controller.Robot_Status (Id, Common.Busy); -- robot is busy
 
             --  drive to the warehouse
             Drive_Time := Random_Drive.Random (Gen);
@@ -50,8 +52,10 @@ package body Robots is
                & "] Robot R"
                & Integer'Image (Id)
                & " delivered the goods");
+            Monitor.Controller.Delivery_Done; -- delivered goods (for monitor)
 
             -- finishing, robot is free again
+            Monitor.Controller.Robot_Status (Id, Common.Free);
             Ada.Text_IO.Put_Line
               ("["
                & Integer'Image (Common.Now)
